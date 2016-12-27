@@ -87,6 +87,7 @@ function whichSide(svg, startElem){
 }
 
 export function connectElements(svgContainer, svg, path, startElem, endElem) {
+    
     if(!!!svgContainer) return;
 
     //if start element is not network
@@ -100,6 +101,8 @@ export function connectElements(svgContainer, svg, path, startElem, endElem) {
     endElem.addClass('connected');
     startElem.attr("connection",[startElem.index(), endElem.index()]);
     endElem.attr("connection",[startElem.index(), endElem.index()]);
+    
+    
 
     // get (top, left) corner coordinates of the svg container
     var svgTop = svgContainer.offset().top;

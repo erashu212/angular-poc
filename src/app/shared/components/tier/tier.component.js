@@ -39,8 +39,6 @@ class TierComponentController {
       });
 
       this.showContainerDetails();
-
-      this.rootScope.$broadcast('event:redraw', { redraw: true, idx: this.tierIndex })
     } else {
       this.tier.ports.push({
         id: guid(),
@@ -56,6 +54,10 @@ class TierComponentController {
     }
 
     //this.tier = Object.assign({}, this.tier, prevObj);
+  }
+
+  redrawConnector() {
+    this.rootScope.$broadcast('event:redraw', { redraw: true, idx: this.tierIndex })
   }
 
   showDetails(event) {
@@ -89,10 +91,10 @@ class TierComponentController {
   }
 
   stopEventPropogation(event) {
-      if(!!event){
-        event.stopPropagation();
-        event.preventDefault();
-      }
+    if (!!event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
   }
 
 }

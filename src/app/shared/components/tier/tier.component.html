@@ -1,7 +1,6 @@
 <div class="text-center">
-  <div class="panel panel-default template-animation tier-wrapper bounce-in-animation animated"
-    ng-click="$ctrl.showDetails();" ui-on-drop="$ctrl.onDropOverTier($event, $data);"
-    drop-channel="container, port"  data-type="tier">
+  <div class="panel panel-default template-animation tier-wrapper" ng-click="$ctrl.showDetails();" ui-on-drop="$ctrl.onDropOverTier($event, $data);"
+    drop-channel="container, port" data-type="tier">
     <div class="tier-badge">{{$ctrl.tierIndex}}</div>
     <div class="panel-heading">
       <h4 class="panel-title">{{$ctrl.tier.name}}</h4>
@@ -10,8 +9,9 @@
       <div class="no-container" ng-if="$ctrl.tier.containers.length == 0 ">No container added</div>
       <div class="tier-connector" ng-if="$ctrl.tier.containers.length || $ctrl.tier.ports.length"></div>
       <!-- repeat containers -->
-      <container data="container" ng-repeat="container in $ctrl.tier.containers track by container.id"
-        ng-click="$ctrl.showContainerDetails($event)">
+      <container data="container" ng-repeat="container in $ctrl.tier.containers 
+      track by container.id" ng-init="$last ? $ctrl.redrawConnector() : angular.noop()" ng-click="$ctrl.showContainerDetails($event)">
+      </container>
     </div>
     <!-- repeat ports -->
     <port data="port" type="{{port.type}}" data="port" ng-repeat="port in $ctrl.tier.ports track by port.id">
