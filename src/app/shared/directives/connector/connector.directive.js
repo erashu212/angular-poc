@@ -15,7 +15,6 @@ class ConnectorController {
     svg.append(path).a
     return path;
   }
-
 }
 
 ConnectorController.$inject = []
@@ -53,6 +52,7 @@ export const ConnectorDirective = () => {
           }
         })
 
+
       function callConnectLine(startElement, endElement, connectionIndexes) {
         if (!connectionIndexes) {
           connectionIndexes = `${$(startElement).index()},${$(endElement).index()}`
@@ -63,6 +63,9 @@ export const ConnectorDirective = () => {
             $(this).remove();
           }
         })
+
+        //adjusting svg dimension
+        svg.height(svgContainer.prop('scrollHeight'));
 
         path = ctrl.createPath(svg);
         $(path).attr("id", connectionIndexes);
@@ -83,20 +86,22 @@ export const ConnectorDirective = () => {
       scope.$on('event:redraw', (evt, data) => {
         let { idx: tierIndex, redraw } = data;
 
-        let startElement;
-        let endElement = getEndElementByIndex(tierIndex - 1);
 
-        let connectedObjectIndexes = $(endElement).attr('connection');
+        $('.tier-wrapper').each(function(item, idx){
+          let startElement;
+          let endElement = $(this);
 
-        if (connectedObjectIndexes) {
-          let idx = connectedObjectIndexes.split(',')[0];
-          startElement = getStartElementByIndex(idx);
+          let connectedObjectIndexes = $(this).attr('connection');
 
-          if (redraw) {
-            callConnectLine(startElement, endElement, connectedObjectIndexes)
+          if (connectedObjectIndexes) {
+            let idx = connectedObjectIndexes.split(',')[0];
+            startElement = getStartElementByIndex(idx);
+
+            if (redraw) {
+              callConnectLine(startElement, endElement, connectedObjectIndexes)
+            }
           }
-        }
-
+        })
       })
     }
   }

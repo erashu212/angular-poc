@@ -87,7 +87,6 @@ function whichSide(svg, startElem){
 }
 
 export function connectElements(svgContainer, svg, path, startElem, endElem) {
-    
     if(!!!svgContainer) return;
 
     //if start element is not network
@@ -97,12 +96,13 @@ export function connectElements(svgContainer, svg, path, startElem, endElem) {
       endElem = tempElem;
     }
 
+
+
     startElem.addClass('connected');
     endElem.addClass('connected');
     startElem.attr("connection",[startElem.index(), endElem.index()]);
     endElem.attr("connection",[startElem.index(), endElem.index()]);
-    
-    
+
 
     // get (top, left) corner coordinates of the svg container
     var svgTop = svgContainer.offset().top;
@@ -115,21 +115,21 @@ export function connectElements(svgContainer, svg, path, startElem, endElem) {
     var startElementSide = whichSide(svgContainer, startElem);
     var endElementSide = whichSide(svgContainer, endElem);
 
+    var scrollAmount = $(".middle-section").scrollTop();
 
     // calculate path's start (x,y)  coords
     // we want the x coordinate to visually result in the element's mid point
 
-    var startX = startCoord.left + 0.5 * startElem.outerWidth() - svgLeft;
-    var startY = startCoord.top + startElem.outerHeight() - svgTop;
-
+    var startX = startCoord.left + 0.5 * startElem.outerWidth() - absolute(svgLeft);
+    var startY = absolute(startCoord.top) + startElem.outerHeight() - absolute(svgTop) + scrollAmount;
     //change end direction according to end element position
     if(endElementSide == "left"){
       // calculate path's end (x,y) coords
       var endX = endCoord.left + endElem.width() - svgLeft;
-      var endY = endCoord.top + 0.5 * endElem.height() - svgTop;
+      var endY = absolute(endCoord.top) + 0.5 * endElem.height() - absolute(svgTop) + scrollAmount;
     }else if(endElementSide == "right"){
       var endX = endCoord.left - svgLeft;
-      var endY = endCoord.top + 0.5 * endElem.height() - svgTop;
+      var endY = absolute(endCoord.top) + 0.5 * endElem.height() - absolute(svgTop) + scrollAmount;
     }
 
     // call function for drawing the path

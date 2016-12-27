@@ -9,10 +9,6 @@ class ExtPortController {
     this.port = {
       name: 'newExtPort'
     }
-
-    $scope.$on('event:showInfoUpdated', (evt, data) => {
-      this.port = Object.assign({}, this.port, data);
-    })
   }
 
   $onInit() {

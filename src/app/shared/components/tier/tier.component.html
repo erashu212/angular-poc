@@ -10,7 +10,7 @@
       <div class="tier-connector" ng-if="$ctrl.tier.containers.length || $ctrl.tier.ports.length"></div>
       <!-- repeat containers -->
       <container data="container" ng-repeat="container in $ctrl.tier.containers 
-      track by container.id" ng-init="$last ? $ctrl.redrawConnector() : angular.noop()" ng-click="$ctrl.showContainerDetails($event)">
+      track by $index" ng-init="$last ? $ctrl.redrawConnector() : angular.noop()" ng-click="$ctrl.showContainerDetails($event)">
       </container>
     </div>
     <!-- repeat ports -->

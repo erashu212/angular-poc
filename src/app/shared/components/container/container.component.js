@@ -22,25 +22,24 @@ class ContainerComponentController {
     }
 
     this.groupedVolumes = [];
-
-    $scope.$on('event:showInfoUpdated', (evt, data) => {
-      this.container = Object.assign({}, this.container, data);
-    })
-    $scope.$on('event:showInfoDeleted', (evt, data) => {
-        this.deleteInfo(data);
-    })
-
   }
 
   $onInit() {
     this.container = this.data;
   }
 
-  // $onChanges(simpleChange) {
-  //   if (simpleChange['data'] && simpleChange['data'].currentValue) {
-  //     this.container = simpleChange['data'].currentValue;
-  //   }
-  // }
+  $onChanges(changeObj){
+    if(changeObj['data'] && changeObj['data'].currentValue) {
+      this.volume = Object.assign({}, this.volume, changeObj['data'].currentValue)
+
+      if (this.groupedVolumes.length <= MAX_VOLUME_STACK) {
+        this.totalVolumeSize = this.container.volumes.length;
+
+        this.groupedVolumes = this.groupByRow(this.container.volumes, MAX_COLS_PER_ROW);
+
+      }
+    }
+  }
 
   onDropOverContainer(evt, data) {
     let prevContainer = this.container;
@@ -81,15 +80,6 @@ class ContainerComponentController {
 
       this.groupedVolumes = this.groupByRow(prevContainer.volumes, MAX_COLS_PER_ROW);
 
-    }
-  }
-
-  deleteInfo(data){
-    console.log(data.index);
-    this.container.volumes.splice(data.index,1);
-    this.totalVolumeSize = this.container.volumes.length;
-    if(this.totalVolumeSize == 0){
-      return this.groupedVolumes.length = 0;
     }
   }
 

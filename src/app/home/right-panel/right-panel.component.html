@@ -123,20 +123,20 @@
 <script type="text/ng-template" id="tier-info.html">
   <div class="tier-info-block">
     <div class="tier-detail-heading">
-      <label>Tier Details</label><i class="delete-icon"></i>
+      <label>Tier Details</label><i class="delete-icon" ng-click="$ctrl.onDeleteInfo($ctrl.templateData[0])"></i>
     </div>
     <div class="form-group">
       <label>Name</label>
-      <input type="text" ng-model="$ctrl.templateData.name" class="form-control" ng-change="$ctrl.onInformationUpdate($ctrl.templateData.name)">
+      <input type="text" ng-model="$ctrl.templateData[0].name" class="form-control" ng-change="$ctrl.onInformationUpdate('tier', $ctrl.templateData[0])">
     </div>
     <div class="form-group">
       <label>Type</label>
-      <input type="text" ng-model="$ctrl.templateData.type" class="form-control" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" ng-model="$ctrl.templateData[0].type" class="form-control" ng-change="$ctrl.onInformationUpdate('tier', $ctrl.templateData[0])">
     </div>
     <div class="form-group">
       <label>Replicas</label>
       <br>
-      <input class="form-control" ng-model="$ctrl.templateData.replica" type="text" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input class="form-control" ng-model="$ctrl.templateData[0].replica" type="text" ng-change="$ctrl.onInformationUpdate('tier', $ctrl.templateData[0])">
     </div>
   </div>
 </script>
@@ -148,11 +148,11 @@
     </div>
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control" ng-model="templateItem.name" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="templateItem.name" ng-change="$ctrl.onInformationUpdate('container', templateItem)">
     </div>
     <div class="form-group">
       <label>Image</label>
-      <input type="text" class="form-control" ng-model="templateItem.image" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="templateItem.image" ng-change="$ctrl.onInformationUpdate('container', templateItem)">
     </div>
     <hr/>
   </div>
@@ -162,23 +162,23 @@
   <div ng-repeat="(idx, volumeItem) in $ctrl.templateData | orderBy:'$index':true"
     class="volume-info-block">
     <div class="volume-heading">
-      <label>Volume {{$ctrl.templateData.length - idx}}</label><i class="delete-icon" ng-click="$ctrl.onDeleteInfo(volumeItem, $ctrl.templateData.length - 1 - idx)"></i>
+      <label>Volume {{$ctrl.templateData.length - idx}}</label><i class="delete-icon"></i>
     </div>
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control" ng-model="volumeItem.name" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="volumeItem.name" ng-change="$ctrl.onInformationUpdate('volume',  volumeItem)">
     </div>
     <div class="form-group">
-      <input type="checkbox" ng-model="volumeItem.readOnly" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="checkbox" ng-model="volumeItem.readOnly" ng-change="$ctrl.onInformationUpdate('volume',  volumeItem)">
       <label>Read only</label>
     </div>
     <div class="form-group">
       <label>Min. Size</label>
-      <input type="text" class="form-control" ng-model="volumeItem.minSize" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="volumeItem.minSize" ng-change="$ctrl.onInformationUpdate('volume',  volumeItem)">
     </div>
     <div class="form-group">
       <label>Max. Sizes</label>
-      <input type="text" class="form-control" ng-model="volumeItem.maxSize" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="volumeItem.maxSize" ng-change="$ctrl.onInformationUpdate('volume', volumeItem)">
     </div>
     <hr/>
   </div>
@@ -192,23 +192,23 @@
     </div>
     <div class="form-group">
       <label>Container port</label>
-      <input type="text" class="form-control" ng-model="portItem.containerPort" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="portItem.containerPort" ng-change="$ctrl.onInformationUpdate('port', portItem)">
     </div>
     <div class="form-group">
       <label>Service port</label>
-      <input type="text" class="form-control" ng-model="portItem.servicePort" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="portItem.servicePort" ng-change="$ctrl.onInformationUpdate('port', portItem)">
     </div>
     <div class="form-group">
       <label>Host port</label>
-      <input type="text" class="form-control" ng-model="portItem.hostPort" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="portItem.hostPort" ng-change="$ctrl.onInformationUpdate('port', portItem)">
     </div>
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control" ng-model="portItem.name" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="portItem.name" ng-change="$ctrl.onInformationUpdate('port', portItem)">
     </div>
     <div class="form-group">
       <label>Protocol</label>
-      <input type="text" class="form-control" ng-model="portItem.protocol" ng-change="$ctrl.onInformationUpdate($event.target.value)">
+      <input type="text" class="form-control" ng-model="portItem.protocol" ng-change="$ctrl.onInformationUpdate('port', portItem)">
     </div>
     <hr/>
   </div>

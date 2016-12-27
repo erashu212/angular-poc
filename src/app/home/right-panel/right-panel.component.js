@@ -51,12 +51,19 @@ class RightPanelController {
     return template
   }
 
-  onInformationUpdate(data) {
-    this.$rootScope.$broadcast('event:showInfoUpdated', data);
+  onInformationUpdate(type, data) {
+   let dataToSend = {
+      type: type,
+      data: data
+    };
+
+    this.$rootScope.$broadcast('event:showInfoUpdated', dataToSend);
   }
 
-  onDeleteInfo(volume, index) {
-    this.$rootScope.$broadcast('event:showInfoDeleted', this.volume = {volume, index});
+  onDeleteInfo(data) {
+    if(!confirm('Do you want to remove this entry?')) return false;
+    this.currentTpl = '';
+    this.$rootScope.$broadcast('event:showInfoDeleted', {type: 'tier', data: data});
   }
 
 }
