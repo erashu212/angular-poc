@@ -12,7 +12,7 @@ class ConnectorController {
 
     createPath(svg) {
         var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        svg.appendChild(path)
+        svg.append(path)
         return path;
     }
 
@@ -27,28 +27,45 @@ export const ConnectorDirective = () => {
         controller: ConnectorController,
         link: function (scope, ele, attrs, ctrl) {
 
-            let svg = angular.element(document.querySelector('.connector'));
-            let path = ctrl.createPath(svg[0]);
+            let svg = $('.connector');
+            let svgContainer = $('.middle-section');
 
-            attrs.$observe('draw', (drawConnector = false) => {
-                if (drawConnector == 'true') {
-                  joinElement()
+            var tierElements = $(ele).find('.tier-vm-render-area');
+
+            //bind mouse down event @network
+            let isDrawingStart = false;
+            let startEle, endEle, path;
+
+            $('.middle-section')
+              .on('mousedown', '.tier-wrapper, .network-block', function(e){
+                if($(this).hasClass('connected')){
+                  return false;
+                }else{
+                  if(!startEle)
+                    startEle = this;
+                  else
+                      endEle = this;
+
+                  if( startEle && endEle && startEle != endEle) {
+                    callConnectLine(startEle, endEle);
+                    startEle = endEle = undefined;
+                  }
                 }
-            })
+              })
 
-            function joinElement(){
-
-              // let parentEle = ele[0];
-
-              // let tier = angular.element(parentEle.querySelector('.tier-wrapper'));
-
-              // let network = angular.element(parentEle.querySelector('.network-block'));
-
-              // let svgContainer = angular.element(document.querySelector('.middle-section'))
-
-              // connectElements(svgContainer[0], svg[0], path, network[0], tier[0])
-
+            function callConnectLine(startElement, endElement){
+              path = ctrl.createPath(svg);
+              if($(startElement).data('type') !== $(endElement).data('type')){
+                connectElements(svgContainer, svg, path, $(startElement), $(endElement))
+              }
             }
+
+            scope.$on('event:redraw', (evt, data) => {
+              let { idx: tierIndex, redraw } = data;
+              debugger;
+              if(redraw)
+                connectElements(svgContainer, svg, path, $(startElement), $(endElement))
+            })
         }
     }
 }

@@ -3,9 +3,10 @@
 import { guid } from '../../services'
 
 class TierComponentController {
-  constructor($scope) {
+  constructor($scope, $rootScope) {
     this.isDetailsPanelVisible = false;
     this.scope = $scope;
+    this.rootScope = $rootScope;
 
     this.tier = {
       id: guid(),
@@ -27,7 +28,7 @@ class TierComponentController {
 
   onDropOverTier(evt, data) {
     let prevObj = this.tier;
-    
+
     if (data == 'container') {
       this.tier.containers.push({
         id: guid(),
@@ -38,6 +39,8 @@ class TierComponentController {
       });
 
       this.showContainerDetails();
+
+      this.rootScope.$broadcast('event:redraw', { redraw: true, idx: this.tierIndex })
     } else {
       this.tier.ports.push({
         id: guid(),
@@ -94,7 +97,7 @@ class TierComponentController {
 
 }
 
-TierComponentController.$inject = ['$scope'];
+TierComponentController.$inject = ['$scope', '$rootScope'];
 
 export const TierComponent = {
   bindings: {

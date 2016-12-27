@@ -3,11 +3,11 @@
     <left></left>
   </div>
   <div class="middle-section no-right-padding" drag-hover-class="animate-on-hover"
-    ui-on-drop="$ctrl.onDropOverMainContent($event, $data);" drop-channel="tier">
+    ui-on-drop="$ctrl.onDropOverMainContent($event, $data);" drop-channel="tier" connector>
     <div class="network-wrapper col-md-12 col-lg-12">
-      <div class="network-block block-orange bounce-in-animation animated">Network 1</div>
-      <div class="network-block block-green bounce-in-animation animated">Network 2</div>
-      <div class="network-block block-blue bounce-in-animation animated">Network 3</div>
+      <div class="network-block block-orange bounce-in-animation animated" data-type="network">Network 1</div>
+      <div class="network-block block-green bounce-in-animation animated" data-type="network">Network 2</div>
+      <div class="network-block block-blue bounce-in-animation animated" data-type="network">Network 3</div>
     </div>
     <div class="tier-vm-render-area col-md-12 col-lg-12">
       <div class="add-tier-container" ng-if="!($ctrl.tiers.length || $ctrl.vms.length)">+ Add Tier/VM</div>

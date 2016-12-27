@@ -1,7 +1,7 @@
-<div class="text-center" connector draw="{{$ctrl.tier.ports.length > 0}}">
+<div class="text-center">
   <div class="panel panel-default template-animation tier-wrapper bounce-in-animation animated"
-    ng-click="$ctrl.showDetails($event);" ui-on-drop="$ctrl.onDropOverTier($event, $data);"
-    drop-channel="container, port">
+    ng-click="$ctrl.showDetails();" ui-on-drop="$ctrl.onDropOverTier($event, $data);"
+    drop-channel="container, port"  data-type="tier">
     <div class="tier-badge">{{$ctrl.tierIndex}}</div>
     <div class="panel-heading">
       <h4 class="panel-title">{{$ctrl.tier.name}}</h4>
