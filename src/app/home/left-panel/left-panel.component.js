@@ -1,6 +1,9 @@
-// require('./left-panel.component.css');
+'use strict'
 
-export const LeftPanelComponent = { 
-  controller: () => { },
+export const LeftPanelComponent = {
+  bindings: {
+    isEmptyCanvas: '<'
+  },
+  controller: () => {},
   template: require('./left-panel.component.html')
 }

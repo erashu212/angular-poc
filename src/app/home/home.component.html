@@ -1,9 +1,10 @@
 <div class="container-fluid app-wrapper">
   <div class="left-panel-wrapper">
-    <left></left>
+    <left is-empty-canvas="!($ctrl.vms.length || $ctrl.tiers.length)"></left>
   </div>
-  <div class="middle-section no-right-padding" drag-hover-class="animate-on-hover"
-    ui-on-drop="$ctrl.onDropOverMainContent($event, $data);" drop-channel="tier" connector>
+  <div class="middle-section no-right-padding" ng-class=" ($ctrl.vms.length || $ctrl.tiers.length) ? 'animate-width' : 'middle-section-full-width'"
+    drag-hover-class="animate-on-hover" ui-on-drop="$ctrl.onDropOverMainContent($event, $data);"
+    drop-channel="tier" connector>
     <div class="network-wrapper col-md-12 col-lg-12">
       <div class="network-block block-orange bounce-in-animation animated" data-type="network">Network 1</div>
       <div class="network-block block-green bounce-in-animation animated" data-type="network">Network 2</div>
@@ -11,16 +12,17 @@
     </div>
     <div class="tier-vm-render-area col-md-12 col-lg-12">
       <!-- repeat tiers -->
-      <tier data="tier" tier-index="{{$index + 1}}" ng-repeat="tier in $ctrl.tiers track by tier.id"
+      <tier data="tier" ng-class="{'active': tier.isActive}" tier-index="{{$index + 1}}" ng-repeat="tier in $ctrl.tiers track by tier.id"
+      ng-click="$ctrl.toggleClass($event, tier);"
         class="bounce-in-animation animated"></tier>
       <!-- repeat vms -->
       <vm data="vm" vm-index="{{$index + 1}}" ng-repeat="vm in $ctrl.vms track by vm.id"
         class="bounce-in-animation animated"></vm>
-      <div class="add-tier-container">+ Add Tier/VM</div>
+      <div class="add-tier-container" ng-class="{'add-tier-full-container' :!($ctrl.vms.length || $ctrl.tiers.length)}">+ Add Tier/VM</div>
     </div>
     <svg class="connector" width="0" height="0"></svg>
   </div>
-  <div class="right-panel-wrapper no-padding">
+  <div class="right-panel-wrapper no-padding" ng-show="($ctrl.vms.length || $ctrl.tiers.length)">
     <right class="animate-show"></right>
   </div>
 </div>

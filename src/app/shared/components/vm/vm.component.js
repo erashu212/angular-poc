@@ -14,6 +14,7 @@ class VMComponentController {
         this.vm = {
             id: guid(),
             name: 'newVM',
+            isActive: false,
             volumes: [],
             ports: []
         }
@@ -23,10 +24,33 @@ class VMComponentController {
         $scope.$on('event:showInfoUpdated', (evt, data) => {
             this.tier = Object.assign({}, this.tier, data);
         })
+
+        $scope.$on('event:volumeDeleted', (evt, data) => {
+            if (!!!data) return;
+
+            let idx = this.vm.volumes.findIndex(vol => vol.id == data.id);
+            if (idx > -1) {
+                this.vm.volumes.splice(idx, 1)
+            }
+
+            if (this.groupedVolumes.length <= MAX_VOLUME_STACK) {
+                this.totalVolumeSize = this.vm.volumes.length;
+
+                this.groupedVolumes = this.groupByRow(this.vm.volumes, MAX_COLS_PER_ROW);
+
+            }
+
+            this.scope.$emit('event:showInfo', {
+                type: 'volume',
+                data: this.vm.volumes || [],
+                isVisible: true
+            })
+        })
     }
 
     $onInit() {
         this.vm = this.data;
+        this.showDetails();
     }
 
     onDropOverVM(evt, data) {
@@ -73,14 +97,14 @@ class VMComponentController {
     }
 
 
-    showVolumeDetails(evt) {
+    showVolumeDetails(evt, volume) {
         evt.preventDefault();
 
         this.isDetailsPanelVisible = true;
 
         this.scope.$emit('event:showInfo', {
             type: 'volume',
-            data: this.container.volumes,
+            data: volume || this.vm.volumes,
             isVisible: this.isDetailsPanelVisible
         })
         evt.stopPropagation();

@@ -14,6 +14,29 @@ class TierComponentController {
       containers: [],
       ports: []
     }
+
+    $scope.$on('event:volumeDeleted', (evt, data) => {
+      if (!!!data) return;
+
+      let containerIdx;
+
+      this.tier.containers.forEach((cont, index) => {
+        let idx = cont.volumes.findIndex(vol => vol.id == data.id);
+        if (idx > -1) {
+          cont.volumes.splice(idx, 1);
+          containerIdx = index;
+          return false;
+        }
+      })
+
+      this.tier.containers[containerIdx] = Object.assign({}, this.tier.containers[containerIdx]);
+
+      this.scope.$emit('event:showInfo', {
+        type: 'volume',
+        data: this.tier.containers[containerIdx].volumes,
+        isVisible: true
+      })
+    })
   }
 
   $onInit() {
@@ -62,7 +85,7 @@ class TierComponentController {
       data: this.tier,
       isVisible: this.isDetailsPanelVisible
     })
-    this.stopEventPropogation(event);
+    // this.stopEventPropogation(event);
   }
 
   showContainerDetails(event) {

@@ -43,6 +43,9 @@ class RightPanelController {
       case 'port':
         template = 'port-info.html'
         break;
+      case 'vm':
+        template = 'vm-info.html'
+        break;
       default:
         template = 'tier-info.html';
         break;
@@ -64,6 +67,12 @@ class RightPanelController {
     if(!confirm('Do you want to remove this entry?')) return false;
     this.currentTpl = '';
     this.$rootScope.$broadcast('event:showInfoDeleted', {type: 'tier', data: data});
+  }
+
+  onVolumeDelete(volume) {
+    if(!confirm('Do you want to remove this entry?')) return false;
+
+    this.$rootScope.$broadcast('event:volumeDeleted', volume);
   }
 
 }

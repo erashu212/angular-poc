@@ -11,12 +11,13 @@
           <div class="policies-container">5 Policies</div>
         </div>
         <div class="col-md-5 no-padding">
-          <div class="volume-icon-drop-area volume-vm-drop-area"></div>
+          <div class="volume-icon-drop-area volume-vm-drop-area" ng-if="$ctrl.totalVolumeSize < 9"></div>
+          <div class="volume-icon-drop-area-secondary" ng-if="$ctrl.totalVolumeSize > 8"></div>
           <div class="volume clearfix" ng-class="$index == 1 ? 'volPosLeft':''" ng-repeat="rows in $ctrl.groupedVolumes track by $index">
             <div class="volume-wrapper" ng-click="$ctrl.showVolumeDetails($event);">
-              <volume data="volume" ng-repeat="volume in rows track by $index"></volume>
+              <volume data="volume" ng-click="$ctrl.showVolumeDetails($event, volume);" ng-repeat="volume in rows track by $index"></volume>
             </div>
-            <div class="vol-icon-shadow"></div>
+            <div class="vol-icon-shadow" ng-click="$ctrl.showVolumeDetails($event);"></div>
           </div>
           <div class="volume-count" ng-if="$ctrl.totalVolumeSize">{{$ctrl.totalVolumeSize}}</div>
           <div class="vol-icon-shadow" ng-if="$ctrl.groupedVolumes.length == 0"></div>
