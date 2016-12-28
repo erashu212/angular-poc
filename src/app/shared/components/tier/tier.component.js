@@ -14,6 +14,23 @@ class TierComponentController {
       containers: [],
       ports: []
     }
+
+    $scope.$on('event:volumeDeleted', (evt, data) => {
+      if(!!!data) return;
+
+      let containerIdx;
+
+      this.tier.containers.forEach((cont, index) => {
+        let idx = cont.volumes.findIndex(vol => vol.id == data.id);
+        if(idx > -1) {
+          cont.volumes.splice(idx, 1);
+          containerIdx = index;
+          return false;
+        }
+      })
+
+      this.tier.containers[containerIdx] = Object.assign({}, this.tier.containers[containerIdx]);
+    })
   }
 
   $onInit() {

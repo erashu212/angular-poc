@@ -46,6 +46,10 @@ export const ConnectorDirective = () => {
               endEle = this;
 
             if (startEle && endEle && startEle != endEle) {
+              // add class to know which network and tier are connected
+              $(startEle).addClass('active');
+              $(endEle).addClass('active');
+
               callConnectLine(startEle, endEle);
               startEle = endEle = undefined;
             }

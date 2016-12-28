@@ -452,11 +452,15 @@ tier {
 .middle-section .tier-wrapper .panel-body .volume-wrapper {
   width: 41px;
   height: 46px;
+  z-index: 99;
+  position: relative;
 }
 
 .middle-section .vm-wrapper .panel-body .volume-wrapper {
   width: 41px;
   height: 31px;
+  z-index: 99;
+  position: relative;
 }
 
 .middle-section .vm-wrapper .panel-body .policies-container {
@@ -989,11 +993,26 @@ vm:nth-child(even) .template-animation.on-drag-hover::after {
     transform: translate3d(0, 100px, 0);
   }
 }
-
+.middle-section-full-width {
+  width: 80%;
+}
+.animate-width {
+   animation: slideWidth 0.8s linear;
+   -webkit-animation: slideWidth 0.8s linear;
+ }
+ 
+ @-webkit-keyframes slideWidth {
+   from {
+     width: 80%
+   }
+   to {
+     width: 65%;
+   }
+ }
 @-webkit-keyframes slideInRight {
   from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(200px, 0, 0);
+    transform: translate3d(200px, 0, 0);
     opacity: 0;
   }
   50% {
@@ -1072,3 +1091,4 @@ path {
     stroke-dashoffset: 0;
   }
 }
+

@@ -83,12 +83,12 @@ class ContainerComponentController {
     }
   }
 
-  showVolumeDetails(event) {
+  showVolumeDetails(event, volume) {
     this.isDetailsPanelVisible = true;
 
     this.scope.$emit('event:showInfo', {
       type: 'volume',
-      data: this.container.volumes,
+      data: volume || this.container.volumes,
       isVisible: this.isDetailsPanelVisible
     })
     this.stopEventPropogation(event);

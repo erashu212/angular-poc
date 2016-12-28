@@ -66,6 +66,11 @@ class RightPanelController {
     this.$rootScope.$broadcast('event:showInfoDeleted', {type: 'tier', data: data});
   }
 
+  onVolumeDelete(volume) {
+    if(!confirm('Do you want to remove this entry?')) return false;
+    this.$rootScope.$broadcast('event:volumeDeleted', volume);
+  }
+
 }
 
 RightPanelController.$inject = [ '$rootScope' ];
