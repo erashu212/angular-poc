@@ -32,7 +32,7 @@ class HomeController {
     this.tiers.map(tier => tier.isActive = false);
 
     tier.isActive = !tier.isActive;
-    evt.stopPropgation();
+    evt.stopPropagation();
   }
 
   addTier(tier) {

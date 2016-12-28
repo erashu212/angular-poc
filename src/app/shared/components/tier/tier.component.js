@@ -16,13 +16,13 @@ class TierComponentController {
     }
 
     $scope.$on('event:volumeDeleted', (evt, data) => {
-      if(!!!data) return;
+      if (!!!data) return;
 
       let containerIdx;
 
       this.tier.containers.forEach((cont, index) => {
         let idx = cont.volumes.findIndex(vol => vol.id == data.id);
-        if(idx > -1) {
+        if (idx > -1) {
           cont.volumes.splice(idx, 1);
           containerIdx = index;
           return false;
@@ -30,6 +30,12 @@ class TierComponentController {
       })
 
       this.tier.containers[containerIdx] = Object.assign({}, this.tier.containers[containerIdx]);
+
+      this.scope.$emit('event:showInfo', {
+        type: 'volume',
+        data: this.tier.containers[containerIdx].volumes,
+        isVisible: true
+      })
     })
   }
 

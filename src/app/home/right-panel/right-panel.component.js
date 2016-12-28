@@ -43,6 +43,9 @@ class RightPanelController {
       case 'port':
         template = 'port-info.html'
         break;
+      case 'vm':
+        template = 'vm-info.html'
+        break;
       default:
         template = 'tier-info.html';
         break;
@@ -69,9 +72,6 @@ class RightPanelController {
   onVolumeDelete(volume) {
     if(!confirm('Do you want to remove this entry?')) return false;
 
-    let idx = this.templateData.findIndex(d => d.id == volume.id);
-    if(idx > -1)
-      this.templateData.splice(idx, 1);
     this.$rootScope.$broadcast('event:volumeDeleted', volume);
   }
 
