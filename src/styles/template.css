@@ -121,6 +121,11 @@ nav a.active {
   margin-bottom: 0px;
 }
 
+.left-panel .panel.disable {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 .left-panel .panel .sub-panel {
   text-align: center;
   background: transparent;
@@ -254,13 +259,19 @@ nav a.active {
 .add-tier-container {
   padding: 20px;
   border: 1px dashed #c5c5c5;
-  width: 100%;
+  width: 50%;
   height: 200px;
   color: #c5c5c5;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
+  position: relative;
+  float: left;
+}
+
+.add-tier-full-container {
+  width: 100%;
 }
 
 .middle-section {
@@ -314,6 +325,10 @@ tier {
   display: inline-flex;
 }
 
+.middle-section .network-block.active {
+  border: 2px solid #cecece;
+}
+
 .middle-section .network-block::after {
   content: "";
   width: 11px;
@@ -321,7 +336,7 @@ tier {
   border-radius: 50%;
   border: 2px solid #fff;
   position: absolute;
-  bottom: -1px;
+  bottom: -2px;
   left: 50%;
   margin-left: -6px;
 }
@@ -361,6 +376,11 @@ tier {
   position: relative;
 }
 
+.middle-section .tier-wrapper.active,
+.middle-section .vm-wrapper.active {
+  border: 2px solid #cecece;
+}
+
 .middle-section .vm-wrapper {
   background: #e9f9c3;
 }
@@ -393,6 +413,16 @@ tier {
 .middle-section tier:nth-child(even) .tier-wrapper::after,
 .middle-section vm:nth-child(even) .vm-wrapper::after {
   left: -10px;
+}
+
+.middle-section tier:nth-child(even) .tier-wrapper.active::after,
+.middle-section vm:nth-child(even) .vm-wrapper.active::after {
+  border-left: 2px solid #cecece;
+}
+
+.middle-section tier:nth-child(odd) .tier-wrapper.active::after,
+.middle-section vm:nth-child(odd) .vm-wrapper.active::after {
+  border-right: 2px solid #cecece;
 }
 
 .middle-section .tier-wrapper .panel-body .panel,
@@ -562,7 +592,7 @@ tier {
 .tier-badge,
 .vm-badge {
   position: relative;
-  top: -2px;
+  top: -6px;
   left: -5px;
   font-size: 12px;
   background: #e3effa;
@@ -979,7 +1009,8 @@ vm:nth-child(even) .template-animation.on-drag-hover::after {
   }
 }
 
-.template-animation {
+
+/*.template-animation {
   box-shadow: 0 0px 11px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 0px 11px rgba(0, 0, 0, 0.15);
 }
@@ -994,6 +1025,23 @@ tier:nth-child(even) .template-animation::after,
 vm:nth-child(even) .template-animation::after {
   box-shadow: -3px 0px 4px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: -3px 0px 4px rgba(0, 0, 0, 0.15);
+}
+@-webkit-keyframes greenPulse {
+  from { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+  50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+  to { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+}*/
+
+@keyframes glowEffect {
+  50% {
+    box-shadow: 0 0 20px #aaf;
+  }
+}
+
+.glow-elem {
+  -webkit-animation-name: glowEffect;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
 }
 
 .volume-icon-drop-area {
@@ -1012,12 +1060,13 @@ vm:nth-child(even) .template-animation::after {
   left: 13px;
   top: 20px;
 }
+
 path {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: dash 5s linear forwards
-;
+  animation: dash 5s linear forwards;
 }
+
 @keyframes dash {
   to {
     stroke-dashoffset: 0;
