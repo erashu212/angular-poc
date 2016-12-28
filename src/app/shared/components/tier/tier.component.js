@@ -79,7 +79,7 @@ class TierComponentController {
       data: this.tier,
       isVisible: this.isDetailsPanelVisible
     })
-    this.stopEventPropogation(event);
+    // this.stopEventPropogation(event);
   }
 
   showContainerDetails(event) {

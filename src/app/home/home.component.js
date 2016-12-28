@@ -28,6 +28,13 @@ class HomeController {
     });
   }
 
+  toggleClass(evt, tier) {
+    this.tiers.map(tier => tier.isActive = false);
+
+    tier.isActive = !tier.isActive;
+    evt.stopPropgation();
+  }
+
   addTier(tier) {
     this.tiers.push(tier);
   }
@@ -38,6 +45,7 @@ class HomeController {
         id: guid(),
         name: 'New York VM',
         type: 'vm',
+        isActive: false,
         volumes: [],
         ports: []
       })
@@ -47,6 +55,7 @@ class HomeController {
         name: 'New Tier',
         type: 'app type',
         replica: 1,
+        isActive: false,
         containers: [],
         ports: []
       })

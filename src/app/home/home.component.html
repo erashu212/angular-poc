@@ -13,7 +13,8 @@
     </div>
     <div class="tier-vm-render-area col-md-12 col-lg-12">
       <!-- repeat tiers -->
-      <tier data="tier" tier-index="{{$index + 1}}" ng-repeat="tier in $ctrl.tiers track by tier.id"
+      <tier data="tier" ng-class="{'active': tier.isActive}" tier-index="{{$index + 1}}" ng-repeat="tier in $ctrl.tiers track by tier.id"
+      ng-click="$ctrl.toggleClass($event, tier);"
         class="bounce-in-animation animated"></tier>
       <!-- repeat vms -->
       <vm data="vm" vm-index="{{$index + 1}}" ng-repeat="vm in $ctrl.vms track by vm.id"
@@ -22,7 +23,7 @@
     </div>
     <svg class="connector" width="0" height="0"></svg>
   </div>
-  <div class="right-panel-wrapper no-padding" ng-if="($ctrl.vms.length || $ctrl.tiers.length)">
+  <div class="right-panel-wrapper no-padding" ng-show="($ctrl.vms.length || $ctrl.tiers.length)">
     <right class="animate-show"></right>
   </div>
 </div>
