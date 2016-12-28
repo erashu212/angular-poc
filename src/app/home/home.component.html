@@ -2,10 +2,9 @@
   <div class="left-panel-wrapper">
     <left is-empty-canvas="!($ctrl.vms.length || $ctrl.tiers.length)"></left>
   </div>
-  <div class="middle-section no-right-padding"
-  ng-class=" ($ctrl.vms.length || $ctrl.tiers.length) ? 'animate-width' : 'middle-section-full-width'"
-   drag-hover-class="animate-on-hover"
-    ui-on-drop="$ctrl.onDropOverMainContent($event, $data);" drop-channel="tier" connector>
+  <div class="middle-section no-right-padding" ng-class=" ($ctrl.vms.length || $ctrl.tiers.length) ? 'animate-width' : 'middle-section-full-width'"
+    drag-hover-class="animate-on-hover" ui-on-drop="$ctrl.onDropOverMainContent($event, $data);"
+    drop-channel="tier" connector>
     <div class="network-wrapper col-md-12 col-lg-12">
       <div class="network-block block-orange bounce-in-animation animated" data-type="network">Network 1</div>
       <div class="network-block block-green bounce-in-animation animated" data-type="network">Network 2</div>

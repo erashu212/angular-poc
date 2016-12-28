@@ -7,9 +7,11 @@
       </div>
       <div class="col-md-5 no-padding">
         <div class="volume-icon-drop-area"></div>
+        <div class="volume-icon-drop-area-secondary"></div>
         <div class="volume clearfix" ng-class="$index == 1 ? 'volPosLeft':''" ng-repeat="rows in $ctrl.groupedVolumes track by $index">
           <div class="volume-wrapper">
-            <volume data="volume" ng-click="$ctrl.showVolumeDetails($event, volume);" ng-repeat="volume in rows track by $index" class="bounce-down-animation animated"></volume>
+            <volume data="volume" ng-click="$ctrl.showVolumeDetails($event, volume);" ng-repeat="volume in rows track by $index"
+              class="bounce-down-animation animated"></volume>
           </div>
           <div class="vol-icon-shadow" ng-click="$ctrl.showVolumeDetails($event);"></div>
         </div>

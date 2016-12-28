@@ -136,7 +136,8 @@
     <div class="form-group">
       <label>Replicas</label>
       <br>
-      <input class="form-control" ng-model="$ctrl.templateData[0].replica" type="text" ng-change="$ctrl.onInformationUpdate('tier', $ctrl.templateData[0])">
+      <input class="form-control" ng-model="$ctrl.templateData[0].replica" type="text"
+        ng-change="$ctrl.onInformationUpdate('tier', $ctrl.templateData[0])">
     </div>
   </div>
 </script>
@@ -186,8 +187,7 @@
 </script>
 <!-- port details templates -->
 <script type="text/ng-template" id="port-info.html">
-  <div ng-repeat="(idx, portItem) in $ctrl.templateData | orderBy:'$index':true"
-       class="volume-info-block">
+  <div ng-repeat="(idx, portItem) in $ctrl.templateData | orderBy:'$index':true" class="volume-info-block">
     <div class="volume-heading">
       <label>Port {{$ctrl.templateData.length - idx}}</label><i class="delete-icon"></i>
     </div>
