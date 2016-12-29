@@ -36,7 +36,7 @@ export const ConnectorDirective = () => {
       let startEle, endEle, path;
 
       $('.middle-section')
-        .on('mousedown', '.tier-wrapper, .network-block, vm', function (e) {
+        .on('mousedown', '.tier-wrapper, .network-block, .vm-wrapper', function (e) {
           if ($(this).hasClass('connected')) {
             return false;
           } else {
@@ -45,7 +45,13 @@ export const ConnectorDirective = () => {
             else
               endEle = this;
 
-            if (startEle && endEle && startEle != endEle) {
+            let startEleType = $(startEle).data('type');
+            let endEleType = $(endEle).data('type');
+
+            if (startEle && endEle && startEle != endEle &&
+              ['tier', 'network'].indexOf(startEleType) > - 1 
+              && ['tier', 'network'].indexOf(endEleType) > -1
+              && startEleType != endEleType) {
               // add class to know which network and tier are connected
               $(startEle).addClass('active');
               $(endEle).addClass('active');
@@ -91,7 +97,7 @@ export const ConnectorDirective = () => {
         let { idx: tierIndex, redraw } = data;
 
 
-        $('.tier-wrapper').each(function(item, idx){
+        $('.tier-wrapper').each(function (item, idx) {
           let startElement;
           let endElement = $(this);
 

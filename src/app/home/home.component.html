@@ -16,7 +16,7 @@
       ng-click="$ctrl.toggleClass($event, tier);"
         class="bounce-in-animation animated"></tier>
       <!-- repeat vms -->
-      <vm data="vm" vm-index="{{$index + 1}}" ng-repeat="vm in $ctrl.vms track by vm.id"
+      <vm data="vm" ng-click="$ctrl.toggleVMClass($event, vm);" vm-index="{{$index + 1}}" ng-repeat="vm in $ctrl.vms track by vm.id"
         class="bounce-in-animation animated"></vm>
       <div class="add-tier-container" ng-class="{'add-tier-full-container' :!($ctrl.vms.length || $ctrl.tiers.length)}">+ Add Tier/VM</div>
     </div>

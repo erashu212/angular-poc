@@ -329,9 +329,7 @@ tier {
   display: inline-flex;
 }
 
-.middle-section .network-block.active {
-  border: 2px solid #cecece;
-}
+
 
 .middle-section .network-block::after {
   content: "";
@@ -380,11 +378,11 @@ tier {
   position: relative;
 }
 
-.middle-section .tier-wrapper.active,
-.middle-section .vm-wrapper.active {
+.middle-section .network-block.active,
+.middle-section tier.active .tier-wrapper,
+.middle-section vm.active .vm-wrapper{
   border: 2px solid #cecece;
 }
-
 .middle-section .vm-wrapper {
   background: #e9f9c3;
 }
@@ -419,13 +417,13 @@ tier {
   left: -10px;
 }
 
-.middle-section tier:nth-child(even) .tier-wrapper.active::after,
-.middle-section vm:nth-child(even) .vm-wrapper.active::after {
+.middle-section tier:nth-child(even).active .tier-wrapper::after,
+.middle-section vm:nth-child(even).active .vm-wrapper::after {
   border-left: 2px solid #cecece;
 }
 
-.middle-section tier:nth-child(odd) .tier-wrapper.active::after,
-.middle-section vm:nth-child(odd) .vm-wrapper.active::after {
+.middle-section tier:nth-child(odd).active .tier-wrapper::after,
+.middle-section vm:nth-child(odd).active .vm-wrapper::after {
   border-right: 2px solid #cecece;
 }
 
@@ -902,8 +900,10 @@ tier .template-animation.on-drag-hover .volume-icon-drop-area-secondary {
 .vm-wrapper.on-drag-enter .volume-icon-drop-area-secondary,
 .vm-wrapper.on-drag-hover .volume-icon-drop-area-secondary {
   visibility: visible;
-  animation: fade-animation 0.8s linear infinite;
-  -webkit-animation: fade-animation 0.8s linear infinite;
+  animation: fade-animation 0.8s linear;
+  -webkit-animation: fade-animation 0.8s linear;
+  box-shadow: 0 0px 11px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0px 11px rgba(0, 0, 0, 0.5);
 }
 
 .right-panel-wrapper {
@@ -926,24 +926,30 @@ tier .template-animation.on-drag-hover .volume-icon-drop-area-secondary {
 
 .template-animation.on-drag-enter,
 .template-animation.on-drag-hover {
-  animation: fade-animation 0.8s linear infinite;
-  -webkit-animation: fade-animation 0.8s linear infinite;
+  animation: fade-animation 0.8s linear;
+  -webkit-animation: fade-animation 0.8s linear;
+  box-shadow: 0 0px 11px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0px 11px rgba(0, 0, 0, 0.5);
 }
 
 tier:nth-child(odd) .template-animation.on-drag-enter::after,
 tier:nth-child(odd) .template-animation.on-drag-hover::after,
 vm:nth-child(odd) .template-animation.on-drag-enter::after,
 vm:nth-child(odd) .template-animation.on-drag-hover::after {
-  animation: odd-connector-fade-animation 0.8s linear infinite;
-  -webkit-animation: odd-connector-fade-animation 0.8s linear infinite;
+  animation: odd-connector-fade-animation 0.8s linear;
+  -webkit-animation: odd-connector-fade-animation 0.8s linear;
+  box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 3px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
 tier:nth-child(even) .template-animation.on-drag-enter::after,
 tier:nth-child(even) .template-animation.on-drag-hover::after,
 vm:nth-child(even) .template-animation.on-drag-enter::after,
 vm:nth-child(even) .template-animation.on-drag-hover::after {
-  animation: even-connector-fade-animation 0.8s linear infinite;
-  -webkit-animation: even-connector-fade-animation 0.8s linear infinite;
+  animation: even-connector-fade-animation 0.8s linear;
+  -webkit-animation: even-connector-fade-animation 0.8s linear;
+  box-shadow: -5px 0px 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: -3px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes odd-connector-fade-animation {
@@ -1059,8 +1065,8 @@ volume.ng-leave .volume-icon {
     opacity: 0;
   }
   to {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    -webkit-transform: translate3d(150px, 0, 0);
+    transform: translate3d(150px, 0, 0);
     opacity: 0;
   }
 }

@@ -35,6 +35,13 @@ class HomeController {
     evt.stopPropagation();
   }
 
+  toggleVMClass(evt, vm) {
+    this.vms.map(vm => vm.isActive = false);
+
+    vm.isActive = !vm.isActive;
+    evt.stopPropagation();
+  }
+
   addTier(tier) {
     this.tiers.push(tier);
   }
