@@ -89,6 +89,9 @@ class VMComponentController {
 
     showDetails() {
         this.isDetailsPanelVisible = true;
+        
+        this.vm.volumes.map(vol => vol.isActive = false);
+
         this.scope.$emit('event:showInfo', {
             type: 'vm',
             data: this.vm,

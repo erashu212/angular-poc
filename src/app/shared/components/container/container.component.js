@@ -86,7 +86,6 @@ class ContainerComponentController {
 
   showVolumeDetails(event, volume) {
     this.isDetailsPanelVisible = true;
-    this.container.isActive = false;
 
     this.scope.$emit('event:showInfo', {
       type: 'volume',

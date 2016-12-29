@@ -20,6 +20,25 @@ class HomeController {
           this.tiers.splice(idx, 1);
         }
       }
+      evt.stopPropagation();
+    })
+
+    $scope.$on('event:entitySelectionChanged', (evt) => {
+      this.tiers.map(tier => {
+        tier.isActive = false
+
+        tier.containers.map(cont => cont.isActive = false);
+        return tier;
+      });
+
+      this.vms.map(vm => {
+        vm.isActive = false
+
+        vm.volumes.map(vol => vol.isActive = false);
+        return vm;
+      });
+
+      evt.stopPropagation();
     })
 
     $scope.$on('event:showInfoUpdated', (evt, args) => {

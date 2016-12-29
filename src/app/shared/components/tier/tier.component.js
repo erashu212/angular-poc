@@ -45,6 +45,8 @@ class TierComponentController {
   }
 
   toggleClass(evt, container) {
+    this.rootScope.$broadcast('event:entitySelectionChanged');
+
     this.tier.containers.map(cont => cont.isActive = false);
 
     container.isActive = !container.isActive;
@@ -87,6 +89,8 @@ class TierComponentController {
 
   showDetails(event) {
     this.isDetailsPanelVisible = true;
+    this.tier.containers.map(cont => cont.isActive = false);
+    
     this.scope.$emit('event:showInfo', {
       type: 'tier',
       data: this.tier,
