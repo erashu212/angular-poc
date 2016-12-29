@@ -1,3 +1,7 @@
+html, body, .app-parent-container {
+  height: 100%;
+}
+
 body {
   background-image: url('/resources/images/bg.png');
 }
@@ -280,9 +284,9 @@ nav a.active {
   margin-left: 20px;
   background: #fff;
   padding: 100px 20px 20px;
-  max-height: 525px;
+  /*max-height: 525px;*/
   overflow: auto;
-  min-height: 525px;
+  /*min-height: 525px;*/
   position: relative;
 }
 
@@ -661,9 +665,9 @@ tier {
 .right-panel {
   height: 100%;
   background-color: #f3f3f3;
-  min-height: 525px;
+  /*min-height: 525px;*/
   border-left: 1px solid #c5c5c5;
-  max-height: 525px;
+  /*max-height: 525px;*/
   overflow: auto;
 }
 
