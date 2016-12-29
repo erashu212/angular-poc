@@ -9,8 +9,8 @@
       <div class="no-container" ng-if="$ctrl.tier.containers.length == 0 ">No container added</div>
       <div class="tier-connector" ng-if="$ctrl.tier.containers.length || $ctrl.tier.ports.length"></div>
       <!-- repeat containers -->
-      <container data="container" ng-repeat="container in $ctrl.tier.containers 
-      track by $index" ng-init="$last ? $ctrl.redrawConnector() : angular.noop()" ng-click="$ctrl.showContainerDetails($event)">
+      <container data="container" ng-class="{'active': container.isActive}"  ng-repeat="container in $ctrl.tier.containers 
+      track by $index" ng-init="$last ? $ctrl.redrawConnector() : angular.noop()" ng-click=" $ctrl.toggleClass($event,container);$ctrl.showContainerDetails($event, container);">
       </container>
     </div>
     <!-- repeat ports -->

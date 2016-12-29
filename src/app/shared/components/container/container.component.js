@@ -10,6 +10,7 @@ const MAX_COLS_PER_ROW = 8;
 class ContainerComponentController {
   constructor($scope) {
     this.scope = $scope;
+    this.isVolumeActive = false;
 
     this.isDetailsPanelVisible = false;
 
@@ -28,8 +29,8 @@ class ContainerComponentController {
     this.container = this.data;
   }
 
-  $onChanges(changeObj){
-    if(changeObj['data'] && changeObj['data'].currentValue) {
+  $onChanges(changeObj) {
+    if (changeObj['data'] && changeObj['data'].currentValue) {
       this.volume = Object.assign({}, this.volume, changeObj['data'].currentValue)
 
       if (this.groupedVolumes.length <= MAX_VOLUME_STACK) {
@@ -85,10 +86,12 @@ class ContainerComponentController {
 
   showVolumeDetails(event, volume) {
     this.isDetailsPanelVisible = true;
+    this.isVolumeActive = true;
+    this.container.isActive = false;
 
     this.scope.$emit('event:showInfo', {
       type: 'volume',
-      data: volume || this.container.volumes,
+      data: volume ? { data: this.container.volumes, id: volume.id } : this.container.volumes,
       isVisible: this.isDetailsPanelVisible
     })
     this.stopEventPropogation(event);
@@ -105,7 +108,7 @@ class ContainerComponentController {
   }
   // To stop event propogation
   stopEventPropogation(event) {
-    if(!!event){
+    if (!!event) {
       event.stopPropagation();
       event.preventDefault();
     }

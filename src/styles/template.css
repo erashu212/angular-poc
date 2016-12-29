@@ -380,8 +380,14 @@ tier {
 
 .middle-section .network-block.active,
 .middle-section tier.active .tier-wrapper,
-.middle-section vm.active .vm-wrapper{
-  border: 2px solid #cecece;
+.middle-section vm.active .vm-wrapper,
+.middle-section container.active .img-container,
+.volume-icon-drop-area.active,
+.volume-icon-drop-area-secondary.active {
+  border: 1px solid #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,0.6);
 }
 .middle-section .vm-wrapper {
   background: #e9f9c3;
@@ -419,12 +425,18 @@ tier {
 
 .middle-section tier:nth-child(even).active .tier-wrapper::after,
 .middle-section vm:nth-child(even).active .vm-wrapper::after {
-  border-left: 2px solid #cecece;
+  border-left: 1px solid #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,0.6);
 }
 
 .middle-section tier:nth-child(odd).active .tier-wrapper::after,
 .middle-section vm:nth-child(odd).active .vm-wrapper::after {
-  border-right: 2px solid #cecece;
+  border-right: 1px solid #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,0.6);
 }
 
 .middle-section .tier-wrapper .panel-body .panel,

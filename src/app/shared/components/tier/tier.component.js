@@ -44,12 +44,19 @@ class TierComponentController {
     this.showDetails();
   }
 
+  toggleClass(evt, container) {
+    this.tier.containers.map(cont => cont.isActive = false);
+
+    container.isActive = !container.isActive;
+  }
+
   onDropOverTier(evt, data) {
     let prevObj = this.tier;
 
     if (data == 'container') {
       this.tier.containers.push({
         id: guid(),
+        isActive: false,
         name: 'new container',
         image: '',
         volumes: [],
@@ -88,11 +95,11 @@ class TierComponentController {
     // this.stopEventPropogation(event);
   }
 
-  showContainerDetails(event) {
+  showContainerDetails(event, container) {
     this.isDetailsPanelVisible = true;
     this.scope.$emit('event:showInfo', {
       type: 'container',
-      data: this.tier.containers,
+      data: container ? {data: this.tier.containers, id: container.id} :this.tier.containers,
       isVisible: this.isDetailsPanelVisible
     })
     this.stopEventPropogation(event);

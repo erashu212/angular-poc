@@ -17,7 +17,7 @@
         class="bounce-in-animation animated"></tier>
       <!-- repeat vms -->
       <vm data="vm" ng-click="$ctrl.toggleVMClass($event, vm);" vm-index="{{$index + 1}}" ng-repeat="vm in $ctrl.vms track by vm.id"
-        class="bounce-in-animation animated"></vm>
+        class="bounce-in-animation animated" ng-class="{'active': vm.isActive}"></vm>
       <div class="add-tier-container" ng-class="{'add-tier-full-container' :!($ctrl.vms.length || $ctrl.tiers.length)}">+ Add Tier/VM</div>
     </div>
     <svg class="connector" width="0" height="0"></svg>

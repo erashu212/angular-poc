@@ -14,9 +14,9 @@ class HomeController {
     $scope.$on('event:showInfoDeleted', (evt, args) => {
       let {type, data } = args;
 
-      if(type == 'tier') {
+      if (type == 'tier') {
         let idx = this.tiers.findIndex(tier => tier.id == data.id);
-        if(idx > -1) {
+        if (idx > -1) {
           this.tiers.splice(idx, 1);
         }
       }
@@ -29,6 +29,7 @@ class HomeController {
   }
 
   toggleClass(evt, tier) {
+    this.vms.map(vm => vm.isActive = false);
     this.tiers.map(tier => tier.isActive = false);
 
     tier.isActive = !tier.isActive;
@@ -37,6 +38,7 @@ class HomeController {
 
   toggleVMClass(evt, vm) {
     this.vms.map(vm => vm.isActive = false);
+    this.tiers.map(tier => tier.isActive = false);
 
     vm.isActive = !vm.isActive;
     evt.stopPropagation();
@@ -48,6 +50,7 @@ class HomeController {
 
   onDropOverMainContent(evt, data) {
     if (data == 'vm') {
+      this.vms.map(vm => vm.isActive = false);
       this.vms.push({
         id: guid(),
         name: 'New York VM',
@@ -56,7 +59,9 @@ class HomeController {
         volumes: [],
         ports: []
       })
-    } else
+    } else {
+
+      this.tiers.map(tier => tier.isActive = false);
       this.addTier({
         id: guid(),
         name: 'New Tier',
@@ -66,29 +71,30 @@ class HomeController {
         containers: [],
         ports: []
       })
+    }
   }
 
   updateInfo(type, data) {
-    switch(type) {
+    switch (type) {
       case 'tier':
         this.tier = Object.assign({}, this.tier, data);
         break;
       case 'container':
         this.tier.containers
-            .filter(cont => cont.id == data.id)
-            .map(cont => Object.assign(cont, data));
+          .filter(cont => cont.id == data.id)
+          .map(cont => Object.assign(cont, data));
         break;
       case 'volume':
         this.tier.containers.forEach(cont => {
           cont.volumes
-              .filter(vol => vol.id == data.id)
-              .map(vol => Object.assign(vol, data));
+            .filter(vol => vol.id == data.id)
+            .map(vol => Object.assign(vol, data));
         });
 
         break;
       case 'ports':
         let portsData;
-        if(this.findWhichTypePort(data.id) == 'tier') {
+        if (this.findWhichTypePort(data.id) == 'tier') {
           portsData = this.tier;
         }
         else {
@@ -96,11 +102,11 @@ class HomeController {
         }
 
         portsData.ports
-            .filter(port => port.id == data.id)
-            .map(port => Object.assign(port, data))
+          .filter(port => port.id == data.id)
+          .map(port => Object.assign(port, data))
 
         break;
-      default :
+      default:
         return data;
 
     }

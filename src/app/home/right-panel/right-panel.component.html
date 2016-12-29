@@ -165,7 +165,7 @@
 </script>
 <!-- container details templates -->
 <script type="text/ng-template" id="container-info.html">
-  <div ng-repeat="templateItem in $ctrl.templateData | orderBy:'$index':true" class="container-info-block">
+  <div id="{{templateItem.id}}"  ng-repeat="templateItem in $ctrl.templateData | orderBy:'$index':true" class="container-info-block">
     <div class="container-info-heading">
       <label>Container {{$ctrl.templateData.length - $index}}</label><i class="delete-icon"></i>
     </div>
@@ -182,7 +182,7 @@
 </script>
 <!-- volume details templates -->
 <script type="text/ng-template" id="volume-info.html">
-  <div ng-repeat="(idx, volumeItem) in $ctrl.templateData | orderBy:'$index':true"
+  <div id="{{volumeItem.id}}" ng-repeat="(idx, volumeItem) in $ctrl.templateData | orderBy:'$index':true"
     class="volume-info-block">
     <div class="volume-heading">
       <label ng-if="$ctrl.templateData.length == 1">{{volumeItem.name}}</label>
