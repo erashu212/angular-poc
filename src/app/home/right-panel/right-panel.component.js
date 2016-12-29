@@ -25,7 +25,10 @@ class RightPanelController {
             let volumeToVisit = data.id;
             this.scrollToVolume(volumeToVisit)
           }, 100)
-        } else {
+        } else if((type == 'volume' || type == 'container') && (data instanceof Array)) {
+          this.templateData = data;
+        }
+         else {
           this.templateData = [data];
         }
       } else {

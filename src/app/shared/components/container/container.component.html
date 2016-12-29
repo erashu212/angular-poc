@@ -2,18 +2,22 @@
   drop-channel="image, volume, port">
   <div class="tier-body">
     <div class="row">
-      <div class="col-md-7 clearfix no-right-padding">
+      <div class="col-md-7 clearfix no-right-padding" ng-click="$ctrl.isVolumeActive = false;">
         <div class="img-container bounce-in-animation animated" ng-src="$ctrl.container.image">Container Image {{$parent.$index + 1}}</div>
       </div>
       <div class="col-md-5 no-padding">
-        <div class="volume-icon-drop-area"
+        <div class="volume-icon-selected-area"
         ng-class="{'active': $ctrl.isVolumeActive}"
          ng-if="$ctrl.totalVolumeSize <= 8"></div>
-        <div class="volume-icon-drop-area-secondary"
+        <div class="volume-icon-selected-area-secondary"
         ng-class="{'active': $ctrl.isVolumeActive}" ng-if="$ctrl.totalVolumeSize > 8"></div>
+        <div class="volume-icon-drop-area"
+         ng-if="$ctrl.totalVolumeSize <= 8"></div>
+        <div class="volume-icon-drop-area-secondary"
+        ng-if="$ctrl.totalVolumeSize > 8"></div>
         <div class="volume clearfix" ng-class="$index == 1 ? 'volPosLeft':''" ng-repeat="rows in $ctrl.groupedVolumes track by $index">
           <div class="volume-wrapper">
-            <volume data="volume" ng-click="$ctrl.showVolumeDetails($event, volume);" ng-repeat="volume in rows track by volume.id"
+            <volume data="volume" ng-click="$ctrl.isVolumeActive = true;$ctrl.showVolumeDetails($event, volume);" ng-repeat="volume in rows track by volume.id"
               class="bounce-down-animation animated"></volume>
           </div>
           <div class="vol-icon-shadow"></div>
