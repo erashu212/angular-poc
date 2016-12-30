@@ -4,11 +4,12 @@ import { guid } from '../../services'
 
 
 const MAX_VOLUME_STACK = 2;
-const MAX_VOLUME_SIZE = 16;
-const MAX_COLS_PER_ROW = 8;
+const MAX_VOLUME_SIZE = 8;
+const MAX_COLS_PER_ROW = 4;
 
 class ContainerComponentController {
   constructor($scope) {
+    this.maxColsPerRow = MAX_COLS_PER_ROW
     this.scope = $scope;
     this.isVolumeActive = false;
 
