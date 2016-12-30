@@ -3,13 +3,14 @@
 import { guid } from '../../services'
 
 const MAX_VOLUME_STACK = 2;
-const MAX_VOLUME_SIZE = 16;
-const MAX_COLS_PER_ROW = 8;
+const MAX_VOLUME_SIZE = 8;
+const MAX_COLS_PER_ROW = 4;
 
 class VMComponentController {
     constructor($scope) {
         this.isDetailsPanelVisible = false;
         this.scope = $scope;
+        this.maxColsPerRow = MAX_COLS_PER_ROW
 
         this.vm = {
             id: guid(),
@@ -107,7 +108,7 @@ class VMComponentController {
 
         this.scope.$emit('event:showInfo', {
             type: 'volume',
-            data: volume || this.vm.volumes,
+            data:  volume ? { data: this.vm.volumes, id: volume.id } : this.vm.volumes,
             isVisible: this.isDetailsPanelVisible
         })
         evt.stopPropagation();

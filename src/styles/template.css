@@ -1061,8 +1061,8 @@ vm:nth-child(even) .template-animation.on-drag-hover::after {
 }
 
 volume.ng-leave .volume-icon {
-  animation: slideOut 1.2s linear;
-  -webkit-animation: slideOut 1.2s linear;
+  animation: slideOut 1s linear;
+  -webkit-animation: slideOut 1s linear;
 }
 
 @keyframes slideOut {
@@ -1135,14 +1135,16 @@ vm:nth-child(even) .template-animation::after {
   width: 32px;
   height: 17px;
   position: absolute;
-  right: 32px;
+  left: 56px;
   top: 36px;
   border-radius: 50%;
   box-shadow: 0 0px 11px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 0px 11px rgba(0, 0, 0, 0.15);
   visibility: hidden;
 }
-
+vm .volume-icon-drop-area-secondary {
+  top: 19px;
+}
 .volume-icon-selected-area-secondary,
 .volume-icon-selected-area {
   width: 32px;
@@ -1157,7 +1159,7 @@ vm:nth-child(even) .template-animation::after {
 }
 
 .volume-icon-selected-area-secondary {
-  right: 32px;
+  left: 56px;
 }
 
 .volume-vm-drop-area {

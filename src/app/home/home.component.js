@@ -20,7 +20,6 @@ class HomeController {
           this.tiers.splice(idx, 1);
         }
       }
-      evt.stopPropagation();
     })
 
     $scope.$on('event:entitySelectionChanged', (evt) => {
@@ -37,8 +36,6 @@ class HomeController {
         vm.volumes.map(vol => vol.isActive = false);
         return vm;
       });
-
-      evt.stopPropagation();
     })
 
     $scope.$on('event:showInfoUpdated', (evt, args) => {

@@ -25,10 +25,10 @@ class RightPanelController {
             let volumeToVisit = data.id;
             this.scrollToVolume(volumeToVisit)
           }, 100)
-        } else if((type == 'volume' || type == 'container') && (data instanceof Array)) {
+        } else if ((type == 'volume' || type == 'container') && (data instanceof Array)) {
           this.templateData = data;
         }
-         else {
+        else {
           this.templateData = [data];
         }
       } else {
@@ -41,8 +41,11 @@ class RightPanelController {
   }
 
   scrollToVolume(targetId) {
-    let destination = $(`#${targetId}`).offset().top - 80;
-    $('.right-panel').animate({ scrollTop: destination }, 1200);
+    let ele = $(`#${targetId}`);
+    if ($.isEmptyObject(ele)) {
+      let destination = ele.offset().top - 80;
+      $('.right-panel').animate({ scrollTop: destination }, 1200);
+    }
   }
 
   getTemplateByType(type) {
